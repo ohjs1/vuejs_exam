@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하위컴포넌트에서 상위컴포넌트의 메시지출력</title>
+</head>
+<body>
+    <div id="app">
+        <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('sibling-component', {
+            props: ['propsdata'],
+            template: '<p>{{ propsdata }}</p>'
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue! passed from Parent Component',
+                anotherMessage: 'new Message!'
+            }
+        });
+    </script>
+</body>
+</html>
