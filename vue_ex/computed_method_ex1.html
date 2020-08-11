@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed 와 method 의 차이점</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMsg">문자열 거꾸로</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        /*
+            computed와 method 속성의 차이점
+            1. method속성은 호출할떄만 해당로직이 실행됨
+            2. computed속성은 대상 데이터 값이 변경되면 자동적으로 재실행됨
+        */
+
+        //computed 속성
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            computed: {
+                reversedMessage: function(){
+                    return this.message.split('').reverse().join('');
+                }
+            },
+        //methods 속성
+            methods: {
+                reverseMsg: function(){
+                    this.message = this.message.split('').reverse().join('');
+                    return this.message;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
